@@ -10,4 +10,4 @@ class BankAccount {
 
 let cos=new BankAccount();
 cos.addBalance(1000);
-console.log(cos.getBalance());
+console.log(cos.getBalance()); 
