@@ -31,3 +31,32 @@ document.getElementById("removeLastTask").addEventListener("click",function(){
     let taskList= document.getElementById("taskList");
     taskList.lastElementChild.remove();
 })
+
+//example-7
+document.getElementById("teaList").addEventListener("click",function(event){
+    if(event.target)
+    {
+        alert("YOu click on " + event.target.textContent);
+    
+    }
+})
+
+//example-8
+document.getElementById("feedbackForm").addEventListener("click",function(event){
+    event.preventDefault();
+    let feedback=document.getElementById("feedbackInput").value;
+    document.getElementById("feedbackDisplay").textContent=`Feedback is : ${feedback}`;
+});
+
+//example-9
+
+document.addEventListener("DOMContentLoaded",function(){
+    document.getElementById("domStatus").textContent="DOM fully loaded";
+})
+
+//example-10
+
+document.getElementById("toggleHighlight").addEventListener("click",function(){
+    let text=document.getElementById("descriptionText");
+    text.classList.toggle("highlight");
+})
