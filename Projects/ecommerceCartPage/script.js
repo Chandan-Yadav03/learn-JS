@@ -1,12 +1,4 @@
 document.addEventListener("DOMContentLoaded",()=>{
-    const products=[
-        {id: 1, name: "product 1", price: 27.33},
-        {id: 2, name: "product 2", price: 57.83},
-        {id: 3, name: "product 3", price: 77.33},
-    ];
-  
-    const cart=[];
-
     const productList= document.getElementById("product-list");
 
     const cartItems= document.getElementById("cart-items");
@@ -16,6 +8,18 @@ document.addEventListener("DOMContentLoaded",()=>{
     const totalPriceDisplay= document.getElementById("total-price");
     const checkOutBtn= document.getElementById("checkout-btn");
 
+    const products=[
+        {id: 1, name: "product 1", price: 27.33},
+        {id: 2, name: "product 2", price: 57.83},
+        {id: 3, name: "product 3", price: 77.33},
+    ];
+  
+    const cart= JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.forEach((ct) => {
+        renderCart(ct);
+    });
+    
     products.forEach((product)=>{
         const productDiv= document.createElement("div");
         productDiv.classList.add("product");
@@ -38,6 +42,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     function addToCart(product){
         cart.push(product);
+        saveTask();
         renderCart();
     };
 
@@ -63,11 +68,13 @@ document.addEventListener("DOMContentLoaded",()=>{
             totalPriceDisplay.textContent=`$${0.00}`;
          }
     }
-
+    function saveTask(){
+        localStorage.setItem("cart",JSON.stringify(cart));
+    }
     checkOutBtn.addEventListener("click",()=>{
         cart.length=0;
         alert("Checkout Successfully");
-
+        saveTask();
         renderCart();
     })
 });
